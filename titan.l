@@ -34,8 +34,25 @@ if|else|while|for|int|float|main|double|char|long|short|return|break|continue|vo
 "&"                            {printf("ADDRESS_OP: %s\n", yytext);}
 "<<="|">>="                    {printf("BITWISE_ASSIGN: %s\n", yytext);}
 \"([^\\\"]|\\.)*\"             {printf("STRING: %s\n", yytext); } //jiniya
+"\.\.\."                       {printf("ELLIPSIS: %s\n", yytext); }
+0[bB][01]+\.[01]+              {printf("BINARY_FLOAT: %s\n", yytext); }
+"::"                           {printf("SCOPE_RESOLUTION: %s\n", yytext); }
+"%"[a-zA-Z]                    {printf("FORMAT_SPECIFIER: %s\n", yytext); }
+#include[ \t]*<[^>]+>          {printf("INCLUDE_DIRECTIVE: %s\n", yytext); }
+"<=>"                          {printf("THREE_WAY_COMPARE: %s\n", yytext); }
+\.[0-9]+                       {printf("DOT_FLOAT: %s\n", yytext); }
+"%%"                           {printf("DOUBLE_PERCENT: %s\n", yytext);}
+":::"                          {printf("TRIPLE_COLON: %s\n", yytext);}
+"??"                           {printf("NULL_COALESCE: %s\n", yytext);}
+"??="                          {printf("NULL_COALESCE_ASSIGN: %s\n", yytext);}
+"@@"                           {printf("DOUBLE_AT: %s\n", yytext);}
+"\$[a-zA-Z_][a-zA-Z0-9_]*"     {printf("DOLLAR_IDENTIFIER: %s\n", yytext);}
+"##"                           {printf("DOUBLE_HASH: %s\n", yytext);}
+"<\*>"                         {printf("WILDCARD_OPERATOR: %s\n", yytext);}
+"!!"                           {printf("DOUBLE_NOT: %s\n", yytext);}
+"%%="                          {printf("MOD_ASSIGN_DOUBLE_PERCENT: %s\n", yytext);}
 [ \t\n]+                       { /* ignore whitespace */ }
-.                              {printf("UNKNOWN: %s\n", yytext);} 
+.                              {printf("UNKNOWN: %s\n", yytext);}   //shahed
 
 %%
 /*nusrat*/
@@ -45,3 +62,4 @@ int main() {
     return 0;
 
 }               
+
