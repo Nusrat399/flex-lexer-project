@@ -19,6 +19,21 @@ if|else|while|for|int|float|main|double|char|long|short|return|break|continue|vo
 "&&"|"||"|"!"                  {printf("LOGICAL: %s\n", yytext);}
 "="|"+"|"-"|"*"|"/"|"%"        {printf("Operator: %s\n", yytext);}
 "+="|"-="|"*="|"/="|"%="       {printf("ASSIGN_OP: %s\n", yytext);} //nusrat
+"("                            {printf("LPAREN: %s\n", yytext);}
+")"                            {printf("RPAREN: %s\n", yytext);}
+"{"                            {printf("LBRACE: %s\n", yytext);}
+"}"                            {printf("RBRACE: %s\n", yytext);}
+"["                            {printf("LBRACKET: %s\n", yytext);}
+"]"                            {printf("RBRACKET: %s\n", yytext);}
+";"                            {printf("SEMICOLON: %s\n", yytext);}
+":"                            {printf("COLON: %s\n", yytext);}
+","                            {printf("COMMA: %s\n", yytext);}
+"."                            {printf("DOT: %s\n", yytext);}
+"?"                            {printf("QUESTION: %s\n", yytext); }
+"->"                           {printf("PTR_ACCESS: %s\n", yytext);}
+"&"                            {printf("ADDRESS_OP: %s\n", yytext);}
+"<<="|">>="                    {printf("BITWISE_ASSIGN: %s\n", yytext);}
+\"([^\\\"]|\\.)*\"             {printf("STRING: %s\n", yytext); } //jiniya
 [ \t\n]+                       { /* ignore whitespace */ }
 .                              {printf("UNKNOWN: %s\n", yytext);} 
 
@@ -28,4 +43,5 @@ int main() {
     yyin = fopen("program.txt", "r");
     yylex();
     return 0;
+
 }               
