@@ -34,6 +34,23 @@ if|else|while|for|int|float|main|double|char|long|short|return|break|continue|vo
 "&"                            {printf("ADDRESS_OP: %s\n", yytext);}
 "<<="|">>="                    {printf("BITWISE_ASSIGN: %s\n", yytext);}
 \"([^\\\"]|\\.)*\"             {printf("STRING: %s\n", yytext); } //jiniya
+'(\\.|[^\\'])'                 {printf("CHAR: %s\n", yytext); }
+\/\/[^\n]*                     {printf("COMMENT_SINGLE: %s\n", yytext); }
+"<<"                           {printf("SHIFT_LEFT: %s\n", yytext); }
+">>"                           {printf("SHIFT_RIGHT: %s\n", yytext); }
+"^"                            {printf("BIT_XOR: %s\n", yytext); }
+"~"                            {printf("BIT_NOT: %s\n", yytext); }
+"++"                           {printf("INCREMENT: %s\n", yytext); }
+"--"                           {printf("DECREMENT: %s\n", yytext); }
+"=>"                           {printf("LAMBDA_ARROW: %s\n", yytext); }
+\#[a-zA-Z_]+                   {printf("PREPROCESSOR: %s\n", yytext); }
+"@"                            {printf("AT_SYMBOL: %s\n", yytext); }
+"#"                            {printf("HASH_SYMBOL: %s\n", yytext); }
+"&="                           {printf("AND_ASSIGN: %s\n", yytext); }
+"|="                           {printf("OR_ASSIGN: %s\n", yytext); }
+"^="                           {printf("XOR_ASSIGN: %s\n", yytext); }
+"\\n"|"\\t"|"\\r"|"\\0"        {printf("ESCAPE_CHAR: %s\n", yytext); }
+">>>"                          {printf("SHIFT_UNSIGNED_RIGHT: %s\n", yytext); } //sorna
 "\.\.\."                       {printf("ELLIPSIS: %s\n", yytext); }
 0[bB][01]+\.[01]+              {printf("BINARY_FLOAT: %s\n", yytext); }
 "::"                           {printf("SCOPE_RESOLUTION: %s\n", yytext); }
@@ -62,4 +79,5 @@ int main() {
     return 0;
 
 }               
+
 
